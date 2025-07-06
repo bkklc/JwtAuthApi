@@ -45,6 +45,33 @@ namespace Business
             return token;
         }
 
-       
+        public async Task<CreatedUserResponse> Register(UserRegisterRequest userRegisterRequest)
+        {
+
+            if (await _userRepository.ExistsByEmailAsync(userRegisterRequest.Email))
+            {
+                throw new InvalidOperationException("User with this email already exists.");
+            }
+
+            var hashedPassword = PasswordHash.HashPassword(userRegisterRequest.Password);
+
+            var user = new User
+            {
+                FirstName = userRegisterRequest.FirstName,
+                LastName = userRegisterRequest.LastName,
+                Email = userRegisterRequest.Email,
+                PasswordHash = hashedPassword
+            };
+
+            var createdUser = await _userRepository.AddAsync(user);
+            return new CreatedUserResponse
+            {
+                FirstName = createdUser.FirstName,
+                LastName = createdUser.LastName,
+                Email = createdUser.Email
+            };
+        }
+
+
     }
 }

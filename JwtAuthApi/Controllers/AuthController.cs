@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.Dtos.Requests.UserRequests;
+using Business.Dtos.Responses.UserResponses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -26,6 +27,13 @@ namespace JwtAuthApi.Controllers
 
             return Ok(token);
 
+        }
+
+        [HttpPost("Register")]
+        public async Task<ActionResult<CreatedUserResponse>> Register([FromBody] UserRegisterRequest userRegisterRequest)
+        {
+            var createdUser = await _authService.Register(userRegisterRequest);
+            return Ok(createdUser);
         }
 
     }

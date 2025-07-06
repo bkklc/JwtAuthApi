@@ -8,7 +8,8 @@ namespace Business
 {
     public interface IAuthService
     {      
-        Task<String> Login(UserLoginRequest userLoginRequest);      
+        Task<String> Login(UserLoginRequest userLoginRequest);
+        Task<CreatedUserResponse> Register(UserRegisterRequest userRegisterRequest);
 
 
     }
