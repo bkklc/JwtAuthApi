@@ -24,10 +24,6 @@ namespace DataAccess
                 entity.ToTable("User");
                 entity.HasKey(u => u.Id);
                 entity.HasIndex(u => u.Email).IsUnique();
-                entity.Property(u => u.FirstName).HasColumnName("FirstName");
-                entity.Property(u => u.LastName).HasColumnName("LastName");
-                
-                
             });
 
         }
