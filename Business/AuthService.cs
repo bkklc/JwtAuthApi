@@ -37,7 +37,9 @@ namespace Business
 
             var token = _tokenService.CreateToken(
             user.Id,
-            user.Email
+            user.Email,
+            user.FirstName,
+            user.LastName
             );
 
             return token;

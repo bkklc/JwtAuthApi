@@ -8,6 +8,6 @@ namespace Core
 {
     public interface ITokenService
     {
-        string CreateToken(int userId, string email);
+        string CreateToken(int userId, string email, string firstName, string lastName);
     }
 }
